@@ -2,6 +2,8 @@
 
 Emojimmy makes it possible to store emoji characters in ActiveRecord datastores that don’t support *4-Byte UTF-8 Unicode* (`utf8mb4`) encoding.
 
+You probably should be using a database that supports `utf8mb4` though (and not this gem), like PostgreSQL or MySQL (5.5+). We built this gem because stock [Heroku](http://heroku.com) machines cannot compile the `mysql2` gem to use the `utf8mb4` encoding (because they ship with an old version of `libmysqlclient`).
+
 <a href="https://rubygems.org/gems/emojimmy"><img src="https://badge.fury.io/rb/emojimmy.png" /></a>
 <a href="https://codeclimate.com/github/mirego/emojimmy"><img src="https://codeclimate.com/github/mirego/emojimmy.png" /></a>
 <a href='https://coveralls.io/r/mirego/emojimmy?branch=master'><img src='https://coveralls.io/repos/mirego/emojimmy/badge.png?branch=master' /></a>
