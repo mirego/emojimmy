@@ -43,9 +43,9 @@ private
     @text_to_emoji = {}
 
     content.each do |line|
-      line = line.chomp.split("\t")
-      emoji = eval('"' + line[1] + '"')
-      text = "{#{line[0]}}"
+      text, emoji = line.chomp.split("\t")
+      emoji = eval('"' + emoji + '"')
+      text = "{#{text}}"
 
       @emoji_to_text[emoji] = text
       @text_to_emoji[text] = emoji
