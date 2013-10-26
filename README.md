@@ -27,6 +27,8 @@ First, you must enable Emojimmy in an initializer (when your application boots):
 Emojimmy.initialize!
 ```
 
+#### ActiveRecord
+
 Then, you can edit your models to specify which fields will be storing emoji characters:
 
 ```ruby
@@ -50,6 +52,18 @@ Your model will now be able to store emoji characters in its `body` column.
 
 # The real magic… how emoji are actually stored
 @comment.read_attribute(:body) # => "Hello! {U+1F601}"
+```
+
+#### Custom
+
+If you only want to use Emojimmy’s conversion methods, you can use two methods, `text_to_emoji` and `emoji_to_text`:
+
+```ruby
+Emojimmy.emoji_to_text("Hello! \xF0\x9F\x98\x81")
+# => "Hello! {U+1F601}"
+
+Emojimmy.text_to_emoji("Hello! {U+1F601}")
+# => "Hello! \xF0\x9F\x98\x81"
 ```
 
 ## License
