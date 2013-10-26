@@ -8,20 +8,13 @@ require 'active_record'
 require 'emojimmy/mixin'
 
 module Emojimmy
+  DATA_FILE = File.expand_path('../../data/emoji.txt', __FILE__)
+
   # Load emoji data from config/emoji.txt and build the `text_to_emoji`
   # and `emoji_to_text` hash tables
   def self.initialize!
-    emoji = File.read(File.expand_path('../../data/emoji.txt', __FILE__)).each_line.to_a
-
-    @text_to_emoji = emoji.inject({}) do |memo, item|
-      item = item.chomp.split("\t")
-      memo.merge "{#{item[0]}}" => eval('"' + item[1] + '"')
-    end
-
-    @emoji_to_text = emoji.inject({}) do |memo, item|
-      item = item.chomp.split("\t")
-      memo.merge eval('"' + item[1] + '"') => "{#{item[0]}}"
-    end
+    content = File.read(DATA_FILE).each_line.to_a
+    build_hash_tables(content)
   end
 
   # Loop through all emoji and replace them with
@@ -39,6 +32,23 @@ module Emojimmy
   def self.text_to_emoji(content)
     content.gsub /({U\+[^}]+})/ do |data|
       @text_to_emoji[data]
+    end
+  end
+
+private
+
+  # Build or `emoji_to_text` and `text_to_emoji` hash tables
+  def self.build_hash_tables(content)
+    @emoji_to_text = {}
+    @text_to_emoji = {}
+
+    content.each do |line|
+      line = line.chomp.split("\t")
+      emoji = eval('"' + line[1] + '"')
+      text = "{#{line[0]}}"
+
+      @emoji_to_text[emoji] = text
+      @text_to_emoji[text] = emoji
     end
   end
 end
