@@ -1,5 +1,11 @@
 require 'emojimmy/version'
 
+# Dependencies
+require 'active_record'
+
+# Modules
+require 'emojimmy/mixin'
+
 module Emojimmy
   # Load emoji data from config/emoji.txt and build the `text_to_emoji`
   # and `emoji_to_text` hash tables
@@ -33,5 +39,14 @@ module Emojimmy
     content.gsub /({U\+[^}]+})/ do |data|
       @text_to_emoji[data]
     end
+  end
+end
+
+class ActiveRecord::Base
+  def self.stores_emoji_characters(options = {})
+    return unless table_exists?
+
+    options[:in] ||= []
+    Emojimmy::Mixin.inject_methods(self, options[:in])
   end
 end
