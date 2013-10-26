@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'spec_helper'
 
 describe Emojimmy::Mixin do
@@ -16,13 +17,13 @@ describe Emojimmy::Mixin do
       subject { Comment.create(body: body) }
 
       context 'with a single emoji' do
-        let(:body) { "Hello, \xF0\x9F\x98\x81 world!" }
+        let(:body) { "Hello, 😁😁 world!" }
         it { should be_persisted }
         its(:body) { should eql body }
       end
 
       context 'with multiple emoji' do
-        let(:body) { "Hello, \xF0\x9F\x98\x81\xF0\x9F\x98\x81 \xF0\x9F\x98\x8D world!" }
+        let(:body) { "Hello, 😁😁😁 😍 world!" }
         it { should be_persisted }
         its(:body) { should eql body }
       end
@@ -39,13 +40,13 @@ describe Emojimmy::Mixin do
       let(:persisted_body) { subject.read_attribute(:body) }
 
       context 'with a single emoji' do
-        let(:body) { "Hello, \xF0\x9F\x98\x81 world!" }
+        let(:body) { "Hello, 😁 world!" }
         it { should be_persisted }
         it { expect(persisted_body).to eql "Hello, {U+1F601} world!" }
       end
 
       context 'with multiple emoji' do
-        let(:body) { "Hello, \xF0\x9F\x98\x81\xF0\x9F\x98\x81 \xF0\x9F\x98\x8D world!" }
+        let(:body) { "Hello, 😁😁 😍 world!" }
         it { should be_persisted }
         it { expect(persisted_body).to eql "Hello, {U+1F601}{U+1F601} {U+1F60D} world!" }
       end
