@@ -6,58 +6,56 @@ require 'active_record'
 
 # Modules
 require 'emojimmy/mixin'
+require 'emojimmy/extensions'
 
 module Emojimmy
   DATA_FILE = File.expand_path('../../data/emoji.txt', __FILE__)
+  TOKEN_REGEXP = /({U\+[^}]+})/
 
-  # Load emoji data from config/emoji.txt and build the `text_to_emoji`
-  # and `emoji_to_text` hash tables
+  # Load emoji data from config/emoji.txt and build the `token_to_emoji`
+  # and `emoji_to_token` hash tables
   def self.initialize!
     content = File.read(DATA_FILE).each_line.to_a
     build_hash_tables(content)
   end
 
   # Loop through all emoji and replace them with
-  # their matching text equivalent
-  def self.emoji_to_text(content)
-    @emoji_to_text.each_pair do |emoji, text|
-      content = content.gsub(emoji, text)
-    end
+  # their matching token
+  def self.emoji_to_token(content)
+    return content unless content.present?
 
-    content
+    content.dup.tap do |content|
+      @emoji_to_token.each_pair do |emoji, token|
+        content.gsub!(emoji, token)
+      end
+    end
   end
 
-  # Loop through each {U+...} part in the string and
+  # Loop through each {U+...} token in the string and
   # convert it to the matching emoji
-  def self.text_to_emoji(content)
-    content.gsub /({U\+[^}]+})/ do |data|
-      @text_to_emoji[data]
-    end
+  def self.token_to_emoji(content)
+    return content unless content.present?
+
+    content.gsub(TOKEN_REGEXP) { |data| @token_to_emoji[data] }
   end
 
 private
 
-  # Build or `emoji_to_text` and `text_to_emoji` hash tables
+  # Build or `emoji_to_token` and `token_to_emoji` hash tables
   def self.build_hash_tables(content)
-    @emoji_to_text = {}
-    @text_to_emoji = {}
+    @emoji_to_token = {}
+    @token_to_emoji = {}
 
     content.each do |line|
-      text, emoji = line.chomp.split("\t")
+      token, emoji = line.chomp.split("\t")
+      token = "{#{token}}"
+
+      # We use `eval` here to convert
+      # "\\xF0\\x9F\\x98\\x81" into "\xF0\x9F\x98\x81"
       emoji = eval('"' + emoji + '"')
-      text = "{#{text}}"
 
-      @emoji_to_text[emoji] = text
-      @text_to_emoji[text] = emoji
+      @emoji_to_token[emoji] = token
+      @token_to_emoji[token] = emoji
     end
-  end
-end
-
-class ActiveRecord::Base
-  def self.stores_emoji_characters(options = {})
-    return unless table_exists?
-
-    options[:in] ||= []
-    Emojimmy::Mixin.inject_methods(self, options[:in])
   end
 end

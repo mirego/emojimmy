@@ -58,13 +58,13 @@ Your model will now be able to store emoji characters in its `body` column.
 
 #### Custom
 
-If you only want to use Emojimmy’s conversion methods, you can use two methods, `text_to_emoji` and `emoji_to_text`:
+If you only want to use Emojimmy’s conversion methods, you can use two methods, `token_to_emoji` and `emoji_to_token`:
 
 ```ruby
-Emojimmy.emoji_to_text("Hello! \xF0\x9F\x98\x81")
+Emojimmy.emoji_to_token("Hello! \xF0\x9F\x98\x81")
 # => "Hello! {U+1F601}"
 
-Emojimmy.text_to_emoji("Hello! {U+1F601}")
+Emojimmy.token_to_emoji("Hello! {U+1F601}")
 # => "Hello! \xF0\x9F\x98\x81"
 ```
 
