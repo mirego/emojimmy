@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = Emojimmy::VERSION
   spec.authors       = ['Rémi Prévost']
   spec.email         = ['rprevost@mirego.com']
-  spec.description   = 'Emojimmy makes it possible to store emoji characters in datastore that don’t support 4-Byte UTF-8 Unicode encoding.'
+  spec.description   = 'Emojimmy makes it possible to store emoji characters in ActiveRecord datastores that don’t support 4-Byte UTF-8 Unicode encoding.'
   spec.summary       = spec.description
   spec.homepage      = 'http://open.mirego.com/emojimmy'
   spec.license       = 'BSD 3-Clause'
