@@ -1,14 +1,18 @@
-# Emojimmy
-
-Emojimmy makes it possible to store emoji characters in ActiveRecord datastores that don’t support *4-Byte UTF-8 Unicode* (`utf8mb4`) encoding.
+<p align="center">
+  <a href="https://github.com/mirego/emojimmy">
+    <img src="http://i.imgur.com/n4Dh6tB.png" alt="Emojimmy" />
+  </a>
+  <br />
+  Emojimmy makes it possible to store emoji characters in ActiveRecord datastores<br/> that don’t support <em>4-Byte UTF-8 Unicode</em> (<code>utf8mb4</code>) encoding.
+  <br /><br />
+  <a href="https://rubygems.org/gems/emojimmy"><img src="https://badge.fury.io/rb/emojimmy.png" /></a>
+  <a href="https://codeclimate.com/github/mirego/emojimmy"><img src="https://codeclimate.com/github/mirego/emojimmy.png" /></a>
+  <a href='https://coveralls.io/r/mirego/emojimmy?branch=master'><img src='https://coveralls.io/repos/mirego/emojimmy/badge.png?branch=master' /></a>
+  <a href='https://gemnasium.com/mirego/emojimmy'><img src="https://gemnasium.com/mirego/emojimmy.png" /></a>
+  <a href="https://travis-ci.org/mirego/emojimmy"><img src="https://travis-ci.org/mirego/emojimmy.png?branch=master" /></a>
+</p>
 
 You probably should be using a database that supports `utf8mb4` though (and not this gem), like PostgreSQL or MySQL (5.5+). We built this gem because stock [Heroku](http://heroku.com) machines cannot compile the `mysql2` gem to use the `utf8mb4` encoding (because they ship with an old version of `libmysqlclient`).
-
-<a href="https://rubygems.org/gems/emojimmy"><img src="https://badge.fury.io/rb/emojimmy.png" /></a>
-<a href="https://codeclimate.com/github/mirego/emojimmy"><img src="https://codeclimate.com/github/mirego/emojimmy.png" /></a>
-<a href='https://coveralls.io/r/mirego/emojimmy?branch=master'><img src='https://coveralls.io/repos/mirego/emojimmy/badge.png?branch=master' /></a>
-<a href='https://gemnasium.com/mirego/emojimmy'><img src="https://gemnasium.com/mirego/emojimmy.png" /></a>
-<a href="https://travis-ci.org/mirego/emojimmy"><img src="https://travis-ci.org/mirego/emojimmy.png?branch=master" /></a>
 
 ---
 
