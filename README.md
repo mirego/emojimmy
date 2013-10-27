@@ -36,7 +36,7 @@ Then, you can edit your models to specify which fields will be storing emoji cha
 ```ruby
 # app/models/comment.rb
 class Comment < ActiveRecord::Base
-  stores_emoji_characters in: [:body]
+  stores_emoji_characters :body
 end
 ```
 

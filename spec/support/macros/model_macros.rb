@@ -1,8 +1,8 @@
 module ModelMacros
   # Create a new Emojimmy-powered model
-  def spawn_emojimmy_model(klass_name, options = {}, &block)
+  def spawn_emojimmy_model(klass_name, *args, &block)
     spawn_model klass_name do
-      stores_emoji_characters options
+      stores_emoji_characters *args
       instance_exec(&block) if block
     end
   end

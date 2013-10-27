@@ -13,7 +13,7 @@ describe Emojimmy::Mixin do
 
     context 'with invalid options for `in`' do
       before do
-        spawn_emojimmy_model 'Comment', in: [:foo]
+        spawn_emojimmy_model 'Comment', :foo
       end
 
       specify do
@@ -25,7 +25,7 @@ describe Emojimmy::Mixin do
 
     context 'with valid options for `in`' do
       before do
-        spawn_emojimmy_model 'Comment', in: [:body]
+        spawn_emojimmy_model 'Comment', :body
       end
 
       describe :InstanceMethod do
