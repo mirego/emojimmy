@@ -48,13 +48,13 @@ Your model will now be able to store emoji characters in its `body` column.
 
 ```ruby
 # Create a comment with an emoji
-@comment = Comment.create(body: "Hello! \xF0\x9F\x98\x81")
+@comment = Comment.create(body: "Hello! 😁")
 
 # Our comment has been saved in the database
 @comment.persisted? # => true
 
 # Magic! Our body contains the emoji!
-@comment.body # => "Hello! \xF0\x9F\x98\x81"
+@comment.body # => "Hello! 😁"
 
 # The real magic… how emoji are actually stored
 @comment.read_attribute(:body) # => "Hello! {U+1F601}"
@@ -65,11 +65,11 @@ Your model will now be able to store emoji characters in its `body` column.
 If you only want to use Emojimmy’s conversion methods, you can use two methods, `token_to_emoji` and `emoji_to_token`:
 
 ```ruby
-Emojimmy.emoji_to_token("Hello! \xF0\x9F\x98\x81")
+Emojimmy.emoji_to_token("Hello! 😁")
 # => "Hello! {U+1F601}"
 
 Emojimmy.token_to_emoji("Hello! {U+1F601}")
-# => "Hello! \xF0\x9F\x98\x81"
+# => "Hello! 😁"
 ```
 
 ## License
