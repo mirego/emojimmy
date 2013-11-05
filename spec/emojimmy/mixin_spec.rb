@@ -63,13 +63,13 @@ describe Emojimmy::Mixin do
         context 'with a single emoji' do
           let(:body) { "Hello, 😁 world!" }
           it { should be_persisted }
-          it { expect(persisted_body).to eql "Hello, {U+1F601} world!" }
+          it { expect(persisted_body).to eql "Hello, :grin: world!" }
         end
 
         context 'with multiple emoji' do
           let(:body) { "Hello, 😁😁 😍 world!" }
           it { should be_persisted }
-          it { expect(persisted_body).to eql "Hello, {U+1F601}{U+1F601} {U+1F60D} world!" }
+          it { expect(persisted_body).to eql "Hello, :grin::grin: :heart_eyes: world!" }
         end
 
         context 'without any emoji' do

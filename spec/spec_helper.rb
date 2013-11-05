@@ -15,10 +15,6 @@ RSpec.configure do |config|
   config.include DatabaseMacros
   config.include ModelMacros
 
-  config.before :suite do
-    Emojimmy.initialize!
-  end
-
   config.before :each do
     adapter = ENV['DB_ADAPTER'] || 'sqlite3'
     setup_database(adapter: adapter, database: 'emojimmy_test')
