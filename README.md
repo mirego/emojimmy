@@ -26,16 +26,9 @@ gem 'emojimmy'
 
 ### Usage
 
-First, you must enable Emojimmy in an initializer (when your application boots):
-
-```ruby
-# config/initializers/emojimmy.rb
-Emojimmy.initialize!
-```
-
 #### ActiveRecord
 
-Then, you can edit your models to specify which fields will be storing emoji characters:
+You have to edit your models to specify which fields will be storing emoji characters:
 
 ```ruby
 # app/models/comment.rb
