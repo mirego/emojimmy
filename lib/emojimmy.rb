@@ -18,13 +18,8 @@ module Emojimmy
     # Encode the string with Rumoji
     content = Rumoji.encode(content)
 
-    # Trim left characters
-    content = content.chars.select do |c|
-      point = c.each_codepoint.to_a.first
-      point <= 65535
-    end
-
-    content.join
+    # Return the text without any other weird characters
+    Emojimmy.strip(content)
   end
 
   # Loop through each {U+...} token in the string and
@@ -33,5 +28,14 @@ module Emojimmy
     return content unless content.present?
 
     Rumoji.decode(content)
+  end
+
+  # Loop through each character in the string and
+  # remove the all emoji ones
+  def self.strip(content)
+    content.chars.select do |c|
+      point = c.each_codepoint.to_a.first
+      point <= 65535
+    end.join
   end
 end

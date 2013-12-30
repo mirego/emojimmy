@@ -59,4 +59,14 @@ describe Emojimmy do
       it { expect(stored_text.each_codepoint.to_a.max).to be <= 65535 }
     end
   end
+
+  describe :strip do
+    context 'with a few emoji characters' do
+      let(:received_text) { 'Hello 😁😁 you 😈 🐸!' }
+      let(:stripped_text) { 'Hello  you  !' }
+
+      subject { Emojimmy.strip(received_text) }
+      it { should eql stripped_text }
+    end
+  end
 end
