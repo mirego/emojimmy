@@ -33,6 +33,8 @@ module Emojimmy
   # Loop through each character in the string and
   # remove the all emoji ones
   def self.strip(content)
+    return content unless content.present?
+
     content.chars.select do |c|
       point = c.each_codepoint.to_a.first
       point <= 65535
