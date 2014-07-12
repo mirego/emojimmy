@@ -1,6 +1,6 @@
 module Emojimmy
   module Mixin
-    def self.inject_methods(model, attributes)
+    def self.inject_methods(model, attributes, options={})
       attributes.each do |attribute|
         model.class_eval <<-RUBY, __FILE__, __LINE__ + 1
           # Before saving the record, convert the attribute value
