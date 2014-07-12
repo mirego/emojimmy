@@ -4,6 +4,7 @@ require 'coveralls'
 Coveralls.wear!
 
 require 'rspec'
+require 'rspec/its'
 require 'sqlite3'
 require 'emojimmy'
 
