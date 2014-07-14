@@ -13,12 +13,14 @@ module Emojimmy
           end
         RUBY
 
-        model.class_eval <<-RUBY, __FILE__, __LINE__ + 1
-          # When calling the attribute name, convert its value
-          def #{attribute}
-            Emojimmy.token_to_emoji(super)
-          end
-        RUBY
+        if options[:read_attribute] != false
+          model.class_eval <<-RUBY, __FILE__, __LINE__ + 1
+            # When calling the attribute name, convert its value
+            def #{attribute}
+              Emojimmy.token_to_emoji(super)
+            end
+          RUBY
+        end
       end
     end
   end
