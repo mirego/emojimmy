@@ -14,10 +14,18 @@ module Emojimmy
         RUBY
 
         if options[:read_attribute] != false
+          alias_attribute   = 'super'
+          unicode_attribute = attribute.to_s
+
+          if options[:read_attribute].is_a?(Hash) && options[:read_attribute][:suffix]
+            alias_attribute = attribute
+            unicode_attribute << "_#{options[:read_attribute][:suffix]}"
+          end
+
           model.class_eval <<-RUBY, __FILE__, __LINE__ + 1
             # When calling the attribute name, convert its value
-            def #{attribute}
-              Emojimmy.token_to_emoji(super)
+            def #{unicode_attribute}
+              Emojimmy.token_to_emoji(#{alias_attribute})
             end
           RUBY
         end

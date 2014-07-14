@@ -63,6 +63,14 @@ describe Emojimmy::Mixin do
           it { should be_persisted }
           its(:body) { should eql "Hello, :grin: world!" }
         end
+
+        context 'given option with `read_attribute: {suffix: :unicode}`' do
+          let(:args) { [:body, {read_attribute: {suffix: :unicode}}] }
+          let(:body) { "Hello, 😁 world!" }
+          it { should be_persisted }
+          its(:body) { should eql "Hello, :grin: world!" }
+          its(:body_unicode) { should eql body }
+        end
       end
 
       describe :Callback do
