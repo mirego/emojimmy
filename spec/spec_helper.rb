@@ -1,8 +1,5 @@
 $:.unshift File.expand_path('../lib', __FILE__)
 
-require 'coveralls'
-Coveralls.wear!
-
 require 'rspec'
 require 'rspec/its'
 require 'sqlite3'

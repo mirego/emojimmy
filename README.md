@@ -7,7 +7,6 @@
   <br /><br />
   <a href="https://rubygems.org/gems/emojimmy"><img src="https://badge.fury.io/rb/emojimmy.png" /></a>
   <a href="https://codeclimate.com/github/mirego/emojimmy"><img src="https://codeclimate.com/github/mirego/emojimmy.png" /></a>
-  <a href='https://coveralls.io/r/mirego/emojimmy?branch=master'><img src='https://coveralls.io/repos/mirego/emojimmy/badge.png?branch=master' /></a>
   <a href='https://gemnasium.com/mirego/emojimmy'><img src="https://gemnasium.com/mirego/emojimmy.png" /></a>
   <a href="https://travis-ci.org/mirego/emojimmy"><img src="https://travis-ci.org/mirego/emojimmy.png?branch=master" /></a>
 </p>
@@ -67,7 +66,7 @@ Emojimmy.token_to_emoji("Hello! :grin:")
 
 ## License
 
-`Emojimmy` is © 2013 [Mirego](http://www.mirego.com) and may be freely distributed under the [New BSD license](http://opensource.org/licenses/BSD-3-Clause).  See the [`LICENSE.md`](https://github.com/mirego/emojimmy/blob/master/LICENSE.md) file.
+`Emojimmy` is © 2013-2015 [Mirego](http://www.mirego.com) and may be freely distributed under the [New BSD license](http://opensource.org/licenses/BSD-3-Clause).  See the [`LICENSE.md`](https://github.com/mirego/emojimmy/blob/master/LICENSE.md) file.
 
 ## About Mirego
 
