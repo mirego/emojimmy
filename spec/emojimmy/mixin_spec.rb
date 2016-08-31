@@ -77,6 +77,11 @@ describe Emojimmy::Mixin do
           it { should be_persisted }
           it { expect(persisted_body).to eql "Hello, boring world!" }
         end
+
+        context 'with false value' do
+          let(:body) { false }
+          it { should be_persisted }
+        end
       end
     end
   end
