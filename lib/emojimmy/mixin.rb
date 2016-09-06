@@ -10,6 +10,7 @@ module Emojimmy
             end
 
             self.#{attribute} = Emojimmy.emoji_to_token(self.#{attribute})
+            true
           end
 
           # When calling the attribute name, convert its value
