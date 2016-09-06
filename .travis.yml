@@ -1,8 +1,8 @@
 language: ruby
 
 rvm:
-  - 2.0.0
-  - 1.9.3
+  - 2.3.1
+  - 2.2.0
 
 gemfile:
   - gemfiles/Gemfile.activerecord-4.0
@@ -10,12 +10,4 @@ gemfile:
 
 script: "echo 'DO IT' && bundle exec rake spec"
 
-
-
-notifications:
-  hipchat:
-    rooms:
-      secure: "yV8z0a+OYFbPzzexn5v99UHzt3VUqNGFVksQMuXdDb2OYSMkwQOGjzRFMIdRT4Wa9wP/LCzQBne3l8qGO5L+6XDfBalFYeEKYmD32n1X1jBH0KQAZTgUdcf2FiY0TYdy9tBt6GpMwZ6B2cNUZAdRDRBQCBC1ap5a3U0fSVmRhD8="
-    template:
-      - '%{repository}#%{build_number} (%{branch} - %{commit} : %{author}): %{message} (<a href="%{build_url}">Build</a>/<a href="%{compare_url}">Changes</a>)'
-    format: 'html'
+sudo: false
