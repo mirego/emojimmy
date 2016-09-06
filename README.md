@@ -15,6 +15,12 @@ You probably should be using a database that supports `utf8mb4` though (and not 
 
 ---
 
+## Deprecation notice
+
+:warning: This repository is now deprecated since most MySQL and PostgreSQL
+installations these days support storing _native_ emoji characters. The gem
+will continue to work as expected but `v0.3` will be the last version.
+
 ## Installation
 
 Add this line to your application's Gemfile:
