@@ -24,8 +24,10 @@ describe Emojimmy::Mixin do
     end
 
     context 'with valid options for `in`' do
+      let(:args) { [:body] }
+
       before do
-        spawn_emojimmy_model 'Comment', :body
+        spawn_emojimmy_model 'Comment', *args
       end
 
       describe :InstanceMethod do
@@ -53,6 +55,21 @@ describe Emojimmy::Mixin do
           let(:body) { nil }
           it { should be_persisted }
           its(:body) { should eql body }
+        end
+
+        context 'given option with `read_attribute: false`' do
+          let(:args) { [:body, {read_attribute: false}] }
+          let(:body) { "Hello, 😁 world!" }
+          it { should be_persisted }
+          its(:body) { should eql "Hello, :grin: world!" }
+        end
+
+        context 'given option with `read_attribute: {suffix: :unicode}`' do
+          let(:args) { [:body, {read_attribute: {suffix: :unicode}}] }
+          let(:body) { "Hello, 😁 world!" }
+          it { should be_persisted }
+          its(:body) { should eql "Hello, :grin: world!" }
+          its(:body_unicode) { should eql body }
         end
       end
 
